@@ -4,6 +4,7 @@
   "description": "Server code which developed by es7",
   "main": "index.js",
   "scripts": {
+    "start": "babel-node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
