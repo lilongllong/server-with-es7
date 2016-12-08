@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="./vender/chart.min.js" charset="utf-8"></script>
+    <script src="./vender/jquery.js" charset="utf-8"></script>
+    <title>sin view demp</title>
+</head>
+<body>
+<h1>hello !</h1>
+<canvas id="bar-canvas"></canvas>
+<script type="text/javascript">
+    $.ajax({
+        url: "/api/tpi",
+        data: {
+            from: new Date("2016-11-3 00:00:00").getTime(),
+            to: new Date().getTime()
+        }
+    }).then(result => {
+        var myChart = new Chart(document.getElementById("bar-canvas"), {
+            type: 'bar',
+            data: {
+                labels: [ "TPI" ],
+                datasets: [
+                    {
+                        type: 'line',
+                        label: 'tpi bars',
+                        data: result.map((item, index) => ({
+                            x: index,
+                            y: item
+                        }))
+                    }
+                ]
+            },
+            options: {
+                scales: {
+                    xAxes: [{
+                        type: 'linear',
+                        position: 'bottom'
+                    }]
+                }
+            }
+        });
+
+    });
+</script>
+</body>
+</html>
