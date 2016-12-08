@@ -1,0 +1,13 @@
+{
+    http:
+    {
+        port: 8080
+    },
+    db:
+    {
+        host: "10.128.184.187",
+        port: 30015,
+        user: "SYSTEM",
+        password: "Nic12345"
+    }
+}
