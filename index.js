@@ -35,7 +35,7 @@ function initApp()
     {
         app.use(express.static("./public"));
     }
-    app.use("/api/", require("./lib.http/api").default);
+    app.use("/api/", require("./lib/http/api").default);
 }
 
 function initHttpServer() {
