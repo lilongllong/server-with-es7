@@ -4,11 +4,13 @@ import express from "express";
 
 import app from "./lib/app";
 import httpServer from "./lib/http/server";
+import socketServer from "./lib/ws/server";
 
 (function startServer() {
     checkEnvironment();
     initApp();
     initHttpServer();
+    initSocketServer();
 })();
 
 function checkEnvironment()
@@ -38,10 +40,16 @@ function initApp()
     app.use("/api/", require("./lib/http/api").default);
 }
 
-function initHttpServer() {
+function initHttpServer()
+{
     const port = config.get("http.port");
     console.log(port, " port");
     httpServer.listen(port, () => {
         console.log(`Server is listening at ${port}...`);
     });
+}
+
+function initSocketServer()
+{
+    app.attach(socketServer);
 }
