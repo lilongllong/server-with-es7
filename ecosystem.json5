@@ -1,0 +1,18 @@
+{
+    apps : [
+        {
+            name: "pro",
+            max_memory_restart: "300M",
+            script    : "./index.js",
+            out_file : "./logs/nova_out.log",
+            error_file : "./logs/nova_error.log",
+            instances  : 2,
+            exec_interpreter: "./node_modules/.bin/babel-node",
+            exec_mode  : "fork",
+            env: {
+                NODE_ENV: "production",
+                port: 8080
+            }
+        }
+    ]
+ }

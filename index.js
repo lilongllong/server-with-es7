@@ -42,8 +42,20 @@ function initApp()
 
 function initHttpServer()
 {
-    const port = config.get("http.port");
-    console.log(port, " port");
+    let instance = 0;
+    if (process.env.NODE_APP_INSTANCE && !isNaN(parseInt(process.env.NODE_APP_INSTANCE)))
+    {
+        instance = parseInt(process.env.NODE_APP_INSTANCE);
+    }
+
+    console.log(instance, process.env.NODE_APP_INSTANCE);
+
+    const port = parseInt(config.get("http.port")) + instance;
+    if (isNaN(port))
+    {
+        throw new Error(`"http.port" must be specified as number in config.`);
+    }
+
     httpServer.listen(port, () => {
         console.log(`Server is listening at ${port}...`);
     });
